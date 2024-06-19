@@ -1,7 +1,7 @@
-/* Nim Main4 Program
+/* Nim Main Program
  * Aaron Bhattachan
  * 
- * Given an input NIM(1, x, y, z), output the win condition for Player 2
+ * Given an input NIM(1, x, y), output the win condition for Player 2
  */
 
 import java.util.Arrays;
@@ -10,7 +10,8 @@ import java.util.Scanner;
 public class NimMain4 {
   public static void main(String[] args) {
     // Create empty array for win table and scanner
-    String[] win_table = new String[201];
+    int win_table_size = 1001;
+    String[] win_table = new String[win_table_size];
     Scanner sc = new Scanner(System.in);
 
     // Get input from user
@@ -18,53 +19,63 @@ public class NimMain4 {
     int[] inp_sticks = input(sc);
 
     // Create win table
-    win_table = NIM(1, inp_sticks[0], inp_sticks[1], inp_sticks[2]);
+    win_table = NIM(win_table_size, inp_sticks);
 
     // Find modulus condition and print
     int[] result = find_mod_condition(win_table);
     int period = result[0];
     int[] losingPositions = Arrays.copyOfRange(result, 1, result.length);
 
-    print_condition(period, losingPositions, inp_sticks[0], inp_sticks[1], inp_sticks[2]);
+    print_condition(period, losingPositions, inp_sticks);
   }
   
   public static void intro() {
     System.out.println("\n==========================================================");
     System.out.println("     Nim-Project: Mod Condition Generator (Program 3)     ");
     System.out.println("==========================================================");
+    System.out.println("Nim(a, b, c, d) --> Mod. Pattern for Player 2\n");
   }
 
   public static int[] input(Scanner s) {
-    int[] inp = new int[4];
+    int size = 4;
 
-    System.out.print("> Enter x: ");
-    inp[0] = s.nextInt();
+    int[] inp = new int[size];
 
-    System.out.print("> Enter y: ");
-    inp[1] = s.nextInt();
+    System.out.print("------------------\nNim(");
+    for (int letter = 0; letter < size; letter++) {
+      System.out.print(((char) (97 + letter)));
+      if (letter != size-1) {
+        System.out.print(", ");
+      }
+    }
+    System.out.println(")");
 
-    System.out.print("> Enter z: ");
-    inp[2] = s.nextInt();
+    for (int i = 0; i < size; i++) {
+      System.out.print("> Enter " + ((char) (97 + i)) + ": ");
+      inp[i] = s.nextInt();
+    }
 
     return inp;
   }
 
-  public static String[] NIM(int a, int x, int y, int z) {
-    String[] win_table = new String[201];
-
+  public static String[] NIM(int size, int[] sticks) {
+    String[] win_table = new String[size];
     win_table[0] = "L"; // Base Case
 
-    for (int i = 1; i < win_table.length; i++) {
-      if (i >= a && win_table[i-a] == "L") {
-        win_table[i] = "W";
-      } else if (i >= x && win_table[i-x] == "L") {
-        win_table[i] = "W";
-      } else if (i >= y && win_table[i-y] == "L") {
-        win_table[i] = "W";
-      } else if (i >= z && win_table[i-z] == "L") {
-        win_table[i] = "W";
-      } else {
+    int sticks_size = sticks.length;
+
+    for (int i = 1; i < size; i++) {
+      boolean changed = false;
+      for (int j = 0; j < sticks_size; j++) {
+        int val = sticks[j];
+        if (i >= val && win_table[i-val] == "L") {
+          win_table[i] = "W";
+          changed = true;
+        } 
+      }
+      if (!changed) {
         win_table[i] = "L";
+
       }
     }
 
@@ -101,9 +112,16 @@ public class NimMain4 {
     return new int[] { -1 };
   }
 
-  public static void print_condition(int period, int[] losingPositions, int x, int y, int z) {
+  public static void print_condition(int period, int[] losingPositions, int[] sticks) {
     System.out.println("---------------------------------");
-    System.out.println("NIM(1, " + x + ", " + y + ", " + z + ")");
+    System.out.print("NIM(");
+    for (int i = 0; i < sticks.length; i++) {
+      if (i != 0) {
+        System.out.print(", ");
+      }
+      System.out.print(sticks[i]);
+    }
+    System.out.print(")\n");
     if (period != -1) {
       System.out.print("Player 2 wins IFF: ");
       System.out.print("n ≡ ");
