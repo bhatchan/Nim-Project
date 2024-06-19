@@ -4,6 +4,8 @@
  * Given an input NIM(a, b, c), output the win condition for Player 2
  */
 
+package set_sticks;
+
 import java.util.Arrays;
 import java.util.Scanner;
 
