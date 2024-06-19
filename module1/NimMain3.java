@@ -1,7 +1,7 @@
-/* Nim Main Program
+/* Nim Main Program (3 Inputs)
  * Aaron Bhattachan
  * 
- * Given an input NIM(1, x, y), output the win condition for Player 2
+ * Given an input NIM(a, b, c), output the win condition for Player 2
  */
 
 import java.util.Arrays;
@@ -30,10 +30,10 @@ public class NimMain3 {
   }
   
   public static void intro() {
-    System.out.println("\n==========================================================");
-    System.out.println("     Nim-Project: Mod Condition Generator (Program 3)     ");
-    System.out.println("==========================================================");
-    System.out.println("Nim(a, b, c) --> Mod. Pattern for Player 2\n");
+    System.out.println("\n=========================================================");
+    System.out.println("     Nim-Project: Mod Condition Generator (3 Inputs)     ");
+    System.out.println("=========================================================");
+    System.out.println("NIM(a, b, c) --> Modulo Condition for Player 2\n");
   }
 
   public static int[] input(Scanner s) {
@@ -41,7 +41,7 @@ public class NimMain3 {
 
     int[] inp = new int[size];
 
-    System.out.print("------------------\nNim(");
+    System.out.print("------------------\nNIM(");
     for (int letter = 0; letter < size; letter++) {
       System.out.print(((char) (97 + letter)));
       if (letter != size-1) {
@@ -133,8 +133,7 @@ public class NimMain3 {
       }
       System.out.println(" (mod " + period + ")\n");
     } else {
-      System.out.println("No periodic pattern found in the WIN table.\n");
+      System.out.println("No modulo condition found.\n");
     }
   }
-  
 }

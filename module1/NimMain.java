@@ -1,7 +1,7 @@
 /* Nim Main Program
  * Aaron Bhattachan
  * 
- * Given an input NIM(1, x, y), output the win condition for Player 2
+ * Given an input NIM(a, b, c, ... y, z), output the win condition for Player 2
  */
 
 import java.util.Arrays;
@@ -33,7 +33,7 @@ public class NimMain {
     System.out.println("\n==========================================================");
     System.out.println("     Nim-Project: Mod Condition Generator (Program 3)     ");
     System.out.println("==========================================================");
-    System.out.println("Nim(a, b, c, ... y, z) --> Mod. Pattern for Player 2\n");
+    System.out.println("NIM(a, b, c, ... y, z) --> Modulo Condition for Player 2\n");
   }
 
   public static int[] input(Scanner s) {
@@ -42,7 +42,7 @@ public class NimMain {
 
     int[] inp = new int[size];
 
-    System.out.print("------------------\nNim(");
+    System.out.print("------------------\nNIM(");
     for (int letter = 0; letter < size; letter++) {
       System.out.print(((char) (97 + letter)));
       if (letter != size-1) {
@@ -84,7 +84,7 @@ public class NimMain {
   }
 
   public static int[] find_mod_condition(String[] table) {
-    for (int period = 1; period < table.length; period++) {
+    for (int period = 1; period < table.length/2; period++) {
       String[] pattern = Arrays.copyOfRange(table, 0, period);
       boolean is_periodic = true;
       for (int i = 0; i < table.length; i++) {
@@ -134,8 +134,7 @@ public class NimMain {
       }
       System.out.println(" (mod " + period + ")\n");
     } else {
-      System.out.println("No periodic pattern found in the WIN table.\n");
+      System.out.println("No modulo condition found.\n");
     }
   }
-  
 }
