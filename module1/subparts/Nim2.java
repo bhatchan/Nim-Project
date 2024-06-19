@@ -1,9 +1,10 @@
-package subparts;
 /* Nim Program 2
  * Aaron Bhattachan
  * 
  * Given a win-table, output the win condition for Player 2
  */
+
+package subparts;
 
 import java.util.*;
 import java.io.*;
@@ -42,7 +43,7 @@ public class Nim2 {
     System.out.println("\n==========================================================");
     System.out.println("     Nim-Project: Win Condition Generator (Program 2)     ");
     System.out.println("==========================================================");
-    System.out.println("Win-Table --> Mod Condition\n");
+    System.out.println("Win-Table --> Mod Condition for Player 2\n");
   }
 
   public static String input(Scanner s) {

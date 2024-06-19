@@ -10,7 +10,8 @@ import java.util.Scanner;
 public class NimMain {
   public static void main(String[] args) {
     // Create empty array for win table and scanner
-    String[] win_table = new String[101];
+    int win_table_size = 1001;
+    String[] win_table = new String[win_table_size];
     Scanner sc = new Scanner(System.in);
 
     // Get input from user
@@ -18,7 +19,7 @@ public class NimMain {
     int[] inp_sticks = input(sc);
 
     // Create win table
-    win_table = NIM(1, inp_sticks[0], inp_sticks[1]);
+    win_table = NIM(win_table_size, inp_sticks);
 
     // Find modulus condition and print
     int[] result = find_mod_condition(win_table);
@@ -32,9 +33,7 @@ public class NimMain {
     System.out.println("\n==========================================================");
     System.out.println("     Nim-Project: Mod Condition Generator (Program 3)     ");
     System.out.println("==========================================================");
-    // System.out.println("Input: All possible number of sticks that can be removed on a single turn");
-    // System.out.println("--> Player A can remove 1, x, or y sticks");
-    // System.out.println("Output: A win table (between 2 players) for all games from 1 to 100 sticks\n");
+    System.out.println("Nim(x, y, z) --> Mod. Pattern for Player 2\n");
   }
 
   public static int[] input(Scanner s) {
@@ -46,23 +45,30 @@ public class NimMain {
     System.out.print("> Enter y: ");
     inp[1] = s.nextInt();
 
+    System.out.print("> Enter z: ");
+    inp[2] = s.nextInt();
+
     return inp;
   }
 
-  public static String[] NIM(int z, int x, int y) {
-    String[] win_table = new String[101];
-
+  public static String[] NIM(int size, int[] sticks) {
+    String[] win_table = new String[size];
     win_table[0] = "L"; // Base Case
 
-    for (int i = 1; i < 101; i++) {
-      if (i >= 1 && win_table[i-1] == "L") {
-        win_table[i] = "W";
-      } else if (i >= x && win_table[i-x] == "L") {
-        win_table[i] = "W";
-      } else if (i >= y && win_table[i-y] == "L") {
-        win_table[i] = "W";
-      } else {
+    int sticks_size = sticks.length;
+
+    for (int i = 1; i < size; i++) {
+      boolean changed = false;
+      for (int j = 0; j < sticks_size; j++) {
+        int val = sticks[j];
+        if (i >= val && win_table[i-val] == "L") {
+          win_table[i] = "W";
+          changed = true;
+        } 
+      }
+      if (!changed) {
         win_table[i] = "L";
+
       }
     }
 

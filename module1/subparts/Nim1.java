@@ -1,9 +1,10 @@
-package subparts;
 /* Nim Program 1
  * Aaron Bhattachan
  * 
  * Given an input NIM(1, x, y), output a win table (for player 1) up to 100 sticks both in terminal and as an output file
  */
+
+package subparts;
 
 import java.util.*;
 import java.io.*;
