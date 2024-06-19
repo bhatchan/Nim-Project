@@ -1,7 +1,8 @@
+package subparts;
 /* Nim Program 1
  * Aaron Bhattachan
  * 
- * Given an input NIM(1, x, y), output a win table up to 100 sticks both in terminal and as an output file
+ * Given an input NIM(1, x, y), output a win table (for player 1) up to 100 sticks both in terminal and as an output file
  */
 
 import java.util.*;
@@ -28,7 +29,7 @@ public class Nim1 {
     System.out.println("\n======================================================");
     System.out.println("     Nim-Project: Win Table Generator (Program 1)     ");
     System.out.println("======================================================");
-    System.out.println("Nim(1, x, y) --> Win-Table\n");
+    System.out.println("Nim(1, x, y) --> Player 1 Win-Table\n");
   }
 
   public static int[] input(Scanner s) {
@@ -65,12 +66,12 @@ public class Nim1 {
 
   public static void print_win_table(char[] table, int x, int y) {
     try {
-      File output = new File("Nim1_Output.txt");
+      File output = new File("module1/subparts/Nim1_Output.txt");
       output.createNewFile();
-      FileWriter file = new FileWriter("Nim1_Output.txt");
+      FileWriter file = new FileWriter("module1/subparts/Nim1_Output.txt");
       
       System.out.println("---------------------------------");
-      System.out.println("Win-Table for Player II given NIM(1," + x + "," + y + "):");
+      System.out.println("NIM(1," + x + "," + y + "):");
       for (int i = 0; i < table.length; i++) {
         System.out.println(i + " sticks: " + table[i]);
         file.write(i + " sticks: " + table[i] + "\n");

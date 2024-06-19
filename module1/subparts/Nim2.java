@@ -1,3 +1,4 @@
+package subparts;
 /* Nim Program 2
  * Aaron Bhattachan
  * 
@@ -41,9 +42,7 @@ public class Nim2 {
     System.out.println("\n==========================================================");
     System.out.println("     Nim-Project: Win Condition Generator (Program 2)     ");
     System.out.println("==========================================================");
-    System.out.println("Input: A win table (between 2 players) for all games from 1 to 100 sticks");
-    System.out.println("--> File input: fileName.txt");
-    System.out.println("Output: All possible number of sticks that can be removed on a single turn\n");
+    System.out.println("Win-Table --> Mod Condition\n");
   }
 
   public static String input(Scanner s) {
