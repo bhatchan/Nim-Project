@@ -30,9 +30,9 @@ public class NimMain {
   }
   
   public static void intro() {
-    System.out.println("\n==========================================================");
-    System.out.println("     Nim-Project: Mod Condition Generator (Program 3)     ");
-    System.out.println("==========================================================");
+    System.out.println("\n=========================================================");
+    System.out.println("     Nim-Project: Mod Condition Generator (Module 1)     ");
+    System.out.println("=========================================================");
     System.out.println("NIM(a, b, c, ... y, z) --> Modulo Condition for Player 2\n");
   }
 

@@ -1,7 +1,7 @@
-/* Nim Main Program
+/* Nim Player Program
  * Aaron Bhattachan
  * 
- * Given an input NIM(a, b, c, ... y, z), output the win condition for Player 2
+ * Given an input NIM(a, b, c, ... y, z), the program will perfectly play NIM to win
  */
 
 package module2;
@@ -19,6 +19,7 @@ public class NimPlayer {
     // Get input from user
     intro();
     int[] inp_sticks = input(sc);
+    int num_sticks = inp_sticks[inp_sticks.length];
 
     // Create win table
     win_table = NIM(win_table_size, inp_sticks);
@@ -32,17 +33,19 @@ public class NimPlayer {
   }
   
   public static void intro() {
-    System.out.println("\n==========================================================");
-    System.out.println("     Nim-Project: Mod Condition Generator (Program 3)     ");
-    System.out.println("==========================================================");
-    System.out.println("NIM(a, b, c, ... y, z) --> Modulo Condition for Player 2\n");
+    System.out.println("\n=====================================================");
+    System.out.println("     Nim-Project: Perfect NIM Player (Program 3)     ");
+    System.out.println("=====================================================");
   }
 
   public static int[] input(Scanner s) {
+    System.out.print("> Enter Number of Sticks: ");
+    int num_sticks = s.nextInt();
+
     System.out.print("> Enter Number of Removable Stick Possibilities: ");
     int size = s.nextInt();
 
-    int[] inp = new int[size];
+    int[] inp = new int[size + 1];
 
     System.out.print("------------------\nNIM(");
     for (int letter = 0; letter < size; letter++) {
@@ -57,6 +60,8 @@ public class NimPlayer {
       System.out.print("> Enter " + ((char) (97 + i)) + ": ");
       inp[i] = s.nextInt();
     }
+
+    inp[size] = num_sticks;
 
     return inp;
   }
