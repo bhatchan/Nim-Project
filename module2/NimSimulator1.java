@@ -4,10 +4,12 @@
 
 package module2;
 
-import module2.imperfect_nim.IMPNimGameClass;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+
+import module2.imperfect_nim.IMPNimGameClass;
+
 import java.text.DecimalFormat;
 
 public class NimSimulator1 implements ActionListener, KeyListener{
