@@ -1,20 +1,22 @@
+/* 1-Pile Nim Simulator GUI
+ * Aaron Bhattachan
+ */
+
 package module2;
 
+import module2.imperfect_nim.IMPNimGameClass;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-
-import module2.imperfect_nim.IMPNimGameClass;
-
 import java.text.DecimalFormat;
 
-public class NimGame implements ActionListener, KeyListener{
+public class NimSimulator1 implements ActionListener, KeyListener{
   private JFrame frame;
   private JTextField text1, text2, text3, text4, text5, text6;
   private static JTextField p1_rate, p2_rate;
-  private static JLabel output_p1, output_p2;
+  private static JLabel output_p1, output_p2, error1;
 
-  public NimGame() {
+  public NimSimulator1() {
     initialize();
   }
 
@@ -23,7 +25,7 @@ public class NimGame implements ActionListener, KeyListener{
     frame = new JFrame("1-Pile Nim Simulator");
     frame.setLayout(new BorderLayout(10, 5));
     frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-    frame.setSize(500, 550);
+    frame.setSize(500, 575);
     frame.setResizable(false);
     frame.setLocationRelativeTo(null);
     frame.setBackground(Color.lightGray);
@@ -45,7 +47,7 @@ public class NimGame implements ActionListener, KeyListener{
     JLabel label1 = createJLabel("Number of Simulations:");
     panel1.add(label1);
 
-    text1 = new JTextField("1000");
+    text1 = new JTextField("10000");
     text1.setFont(new Font("Arial", Font.PLAIN, 13));
     text1.setMargin(new Insets(5, 10, 5, 10));
     text1.setColumns(4);
@@ -129,6 +131,11 @@ public class NimGame implements ActionListener, KeyListener{
     button.addKeyListener(this);
     panel1.add(button);
 
+    error1 = new JLabel();
+    error1.setFont(new Font("Arial", Font.PLAIN, 12));
+    error1.setVisible(false);
+    panel1.add(error1);
+
     // Create Output JPanel
     JPanel panel2 = new JPanel();
     panel2.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 15));
@@ -183,48 +190,45 @@ public class NimGame implements ActionListener, KeyListener{
 
   @Override
   public void actionPerformed(ActionEvent e) {
-    String num_sim = text1.getText();
-    String num_sticks = text2.getText();
-    String p1 = text3.getText();
-    String p2 = text4.getText();
-    String x = text5.getText();
-    String y = text6.getText();
+    try {
+      int num_sim = Integer.parseInt(text1.getText());
+      int num_sticks = Integer.parseInt(text2.getText());
+      int p1 = Integer.parseInt(text3.getText());
+      int p2 = Integer.parseInt(text4.getText());
+      int x = Integer.parseInt(text5.getText());
+      int y = Integer.parseInt(text6.getText());
+      int[] remove_sticks = {1, x, y};
 
-    int[] remove_sticks = {1, stringToInt(x), stringToInt(y)};
-    simulate_games(stringToInt(num_sim), stringToInt(num_sticks), stringToInt(p1), stringToInt(p2), remove_sticks);
+      if (num_sim < 0 || num_sticks < 0 || p1 < 0 || p1 > 100 || p2 < 0 || p2 > 100 || x < 0 || y < 0) {
+        throw new NumberFormatException();
+      }
+
+      error1.setText("                                             Green = Positional Advantage                                              ");
+      error1.setForeground(Color.BLACK);
+      error1.setVisible(true);
+
+      simulate_games(num_sim, num_sticks, p1, p2, remove_sticks);
+    } catch (NumberFormatException error) {
+      error1.setText("                                             Error. Please try again.                                              ");
+      error1.setForeground(Color.RED);
+      error1.setVisible(true);
+    }
   }
 
-  public void keyTyped(KeyEvent e) {
-
-  }
-
-  /** Handle the key-pressed event from the text field. */
+  
+  // Handle the key-pressed event from the text field
   public void keyPressed(KeyEvent e) {
     if (e.getKeyCode()==KeyEvent.VK_ENTER){
       System.out.println("Hello");
     }  
   }
 
-  public void keyReleased(KeyEvent e) {
+  public void keyTyped(KeyEvent e) {
 
   }
 
-  private int stringToInt(String str) {
-    int result = 0;
-    char[] array = new char[str.length()];
+  public void keyReleased(KeyEvent e) {
 
-    for (int i = 0; i < str.length(); i++) {
-      array[i] = str.charAt(i);
-    }
-
-    int multiplier = 1;
-    for (int i = array.length-1; i >= 0; i--) {
-      int digit = (int) array[i] - 48;
-      result += digit * multiplier;
-      multiplier *= 10;
-    }
-
-    return result;
   }
 
   private static void simulate_games(int num_simulations, int num_sticks, int p1, int p2, int[] remove_sticks) {
@@ -257,12 +261,16 @@ public class NimGame implements ActionListener, KeyListener{
     int positional_advantage = simulator.perfect_winner_gui();
     if (positional_advantage == 1) {
       output_p1.setFont(new Font("Arial", Font.BOLD, 16));
+      output_p1.setForeground(Color.GREEN);
       output_p2.setFont(new Font("Arial", Font.PLAIN, 16));
+      output_p2.setForeground(Color.WHITE);
       p1_rate.setFont(new Font("Arial", Font.BOLD, 12));
       p2_rate.setFont(new Font("Arial", Font.PLAIN, 12));
     } else {
       output_p1.setFont(new Font("Arial", Font.PLAIN, 16));
+      output_p1.setForeground(Color.WHITE);
       output_p2.setFont(new Font("Arial", Font.BOLD, 16));
+      output_p2.setForeground(Color.GREEN);
       p1_rate.setFont(new Font("Arial", Font.PLAIN, 12));
       p2_rate.setFont(new Font("Arial", Font.BOLD, 12));
     }
@@ -275,7 +283,12 @@ public class NimGame implements ActionListener, KeyListener{
   }
 
   public static void main(String[] args) {
-    NimGame nim = new NimGame();
-    nim.tip();
+    SwingUtilities.invokeLater(new Runnable() {
+      @Override
+      public void run() {
+        NimSimulator1 nim = new NimSimulator1();
+        nim.tip();
+      }
+    });
   }
 }

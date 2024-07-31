@@ -1,4 +1,4 @@
-/* Perfect Nim Game Class
+/* Imperfect Nim Game Class
  * Aaron Bhattachan
  */
 package module2.imperfect_nim;
