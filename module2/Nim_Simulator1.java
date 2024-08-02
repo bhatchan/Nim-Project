@@ -8,17 +8,17 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-import module2.imperfect_nim.IMPNimGameClass;
+import module2.subparts.imperfect_nim.Nim_IMPGameClass;
 
 import java.text.DecimalFormat;
 
-public class NimSimulator1 implements ActionListener, KeyListener{
+public class Nim_Simulator1 implements ActionListener, KeyListener{
   private JFrame frame;
   private JTextField text1, text2, text3, text4, text5, text6;
   private static JTextField p1_rate, p2_rate;
   private static JLabel output_p1, output_p2, error1;
 
-  public NimSimulator1() {
+  public Nim_Simulator1() {
     initialize();
   }
 
@@ -234,7 +234,7 @@ public class NimSimulator1 implements ActionListener, KeyListener{
   }
 
   private static void simulate_games(int num_simulations, int num_sticks, int p1, int p2, int[] remove_sticks) {
-    IMPNimGameClass simulator = new IMPNimGameClass(num_sticks, p1, p2, remove_sticks);
+    Nim_IMPGameClass simulator = new Nim_IMPGameClass(num_sticks, p1, p2, remove_sticks);
 
     int p1_wins = 0;
     int p2_wins = 0;
@@ -288,7 +288,7 @@ public class NimSimulator1 implements ActionListener, KeyListener{
     SwingUtilities.invokeLater(new Runnable() {
       @Override
       public void run() {
-        NimSimulator1 nim = new NimSimulator1();
+        Nim_Simulator1 nim = new Nim_Simulator1();
         nim.tip();
       }
     });

@@ -1,12 +1,12 @@
-/* Perfect Nim Game
+/* Perfect Nim Player
  * Aaron Bhattachan
  */
-package module2.perfect_nim;
+package module2.subparts.perfect_nim;
 
 import java.util.Scanner;
 
 
-public class PerfectNimGame {
+public class Nim_PPlayer {
   public static void main(String[] args) {
     // Create scanner object for user input and empty array for win table 
     int win_table_size = 1001;
@@ -25,14 +25,14 @@ public class PerfectNimGame {
     win_table = win_table_generator(win_table_size, inp_sticks);
 
     // Play NIM
-    play_nim(win_table, remove_sticks, inp_sticks[inp_sticks.length-2], inp_sticks[inp_sticks.length-1]);
+    play_nim(sc, win_table, remove_sticks, inp_sticks[inp_sticks.length-2], inp_sticks[inp_sticks.length-1]);
   }
   
   // Method for Intro Print Statements
   public static void intro() {
-    System.out.println("\n==================================================");
-    System.out.println("     Nim-Project: Perfect NIM Game (Module 2)     ");
-    System.out.println("==================================================");
+    System.out.println("\n====================================================");
+    System.out.println("     Nim-Project: Perfect NIM Player (Module 2)     ");
+    System.out.println("====================================================");
   }
 
   // Method for User Input
@@ -40,6 +40,10 @@ public class PerfectNimGame {
     // User input for number of sticks
     System.out.print("> Enter Number of Sticks: ");
     int num_sticks = s.nextInt();
+
+    // User input for player turn
+    System.out.print("> Enter Player Turn (1=You, 2=Program): ");
+    int player_turn = s.nextInt();
 
     // User input for number of removable stick possibilities
     System.out.print("\n> Enter Number of Removable Stick Possibilities: ");
@@ -63,7 +67,7 @@ public class PerfectNimGame {
     }
 
     user_input[size] = num_sticks;
-    user_input[size+1] = 1;
+    user_input[size+1] = player_turn;
 
     return user_input;
   }
@@ -93,7 +97,7 @@ public class PerfectNimGame {
     return win_table;
   }
 
-  public static void play_nim(String[] win_table, int[] remove_sticks, int num_sticks, int turn) {
+  public static void play_nim(Scanner s, String[] win_table, int[] remove_sticks, int num_sticks, int turn) {
     // Print statements
     System.out.println("-------------------------");
     System.out.print("NIM(");
@@ -109,7 +113,7 @@ public class PerfectNimGame {
 
     // Repeat until number of sticks is 0 or you can't remove any number of legal sticks to get to 0 sticks
     while (num_sticks != 0 && !game_done) {
-      // System.out.println("Number of Sticks: " + num_sticks);
+      System.out.println("Number of Sticks: " + num_sticks);
       game_done = true;
 
       // Check that there's still a legal stick remove possibility that leads to number of sticks greater than or equal to 0
@@ -122,41 +126,24 @@ public class PerfectNimGame {
       // If there's still a legal "move", play on
       if (!game_done) {
 
-        // Player 1 Turn
+        // Player Turn
         if (turn == 1) { 
-          // System.out.println("Player Turn: Player 1");
-
-          // If the Program is in a losing position, just remove 1 stick
-          if (win_table[num_sticks].equals("L")) { 
-            num_sticks--;
-            turn = 2;
-            // System.out.println("Player 1 removes 1 stick.");
-          } 
-          
-          // If the Program is in a winning position, find largest removable stick that can be removed to get to a "L"
-          else if (win_table[num_sticks].equals("W")) {
-            boolean removed = false;
-            for (int i = remove_sticks.length - 1; i >= 0 && removed == false; i--) {
-              int new_stick_num = num_sticks - remove_sticks[i];
-              if (new_stick_num >= 0 && win_table[new_stick_num].equals("L")) {
-                removed = true;
-                num_sticks = new_stick_num;
-                turn = 2;
-                // System.out.println("Player 1 removes " + remove_sticks[i] + " sticks.");
-              }
-            }
-          }
+          System.out.println("Player Turn: YOU");
+          System.out.print("> Enter number of sticks to remove: ");
+          int user_remove_stick = s.nextInt();
+          num_sticks -= user_remove_stick;
+          turn = 2;
         } 
 
-        // Player 2 Turn
+        // Program Turn
         else if (turn == 2) { 
-          // System.out.println("Player Turn: Player 2");
+          System.out.println("Player Turn: PROGRAM");
 
           // If the Program is in a losing position, just remove 1 stick
           if (win_table[num_sticks].equals("L")) { 
             num_sticks--;
             turn = 1;
-            // System.out.println("Player 2 removes 1 stick.");
+            System.out.println("Program removes 1 stick.");
           } 
           
           // If the Program is in a winning position, find largest removable stick that can be removed to get to a "L"
@@ -168,19 +155,19 @@ public class PerfectNimGame {
                 removed = true;
                 num_sticks = new_stick_num;
                 turn = 1;
-                // System.out.println("Player 2 removes " + remove_sticks[i] + " sticks.");
+                System.out.println("Program removes " + remove_sticks[i] + " sticks.");
               }
             }
           }
         }
-        // System.out.println("------------------");
+        System.out.println("------------------");
       }
     }
 
     if (turn == 1) {
-      System.out.println("Player 2 wins the game.");
+      System.out.println("Program wins the game.");
     } else {
-      System.out.println("Player 1 wins the game.");
+      System.out.println("Congratulations! You win the game.");
     }
   }
 }

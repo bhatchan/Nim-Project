@@ -2,11 +2,11 @@
  * Aaron Bhattachan
  */
 
-package module2.perfect_nim;
+package module2.subparts.perfect_nim;
 
 import java.util.Scanner;
 
-public class PNimGameDriver {
+public class Nim_PGameDriver {
   public static void main(String[] args) {
     // Create scanner object for user input
     Scanner sc = new Scanner(System.in);
@@ -70,7 +70,7 @@ public class PNimGameDriver {
   }
 
   public static void simulate_games(int[] remove_sticks, int num_sticks, int num_simulations) {
-    PNimGameClass simulator = new PNimGameClass(num_sticks, remove_sticks);
+    Nim_PGameClass simulator = new Nim_PGameClass(num_sticks, remove_sticks);
     simulator.game_stats();
 
     int p1_wins = 0;

@@ -9,7 +9,7 @@ package subparts;
 import java.util.*;
 import java.io.*;
 
-public class Nim2 {
+public class Nim_TableToMod {
   public static void main(String[] args) {
     try {
       Scanner sc = new Scanner(System.in);

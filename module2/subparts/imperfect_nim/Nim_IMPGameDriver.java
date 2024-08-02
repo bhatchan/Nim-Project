@@ -2,12 +2,12 @@
  * Aaron Bhattachan
  */
 
-package module2.imperfect_nim;
+package module2.subparts.imperfect_nim;
 
 import java.util.Scanner;
 import java.text.DecimalFormat;
 
-public class IMPNimGameDriver {
+public class Nim_IMPGameDriver {
   public static void main(String[] args) {
     // Create scanner object for user input
     Scanner sc = new Scanner(System.in);
@@ -83,7 +83,7 @@ public class IMPNimGameDriver {
   }
 
   public static void simulate_games(Scanner s, int[] remove_sticks, int p1, int p2, int num_sticks, int num_simulations) {
-    IMPNimGameClass simulator = new IMPNimGameClass(num_sticks, p1, p2, remove_sticks);
+    Nim_IMPGameClass simulator = new Nim_IMPGameClass(num_sticks, p1, p2, remove_sticks);
     boolean repeat = false;
     do {
       simulator.game_stats();

@@ -1,14 +1,14 @@
 /* Perfect Nim Game Class
  * Aaron Bhattachan
  */
-package module2.perfect_nim;
+package module2.subparts.perfect_nim;
 
-public class PNimGameClass {
+public class Nim_PGameClass {
   private int num_sticks;
   private int[] remove_sticks;
   private String[] win_table;
 
-  public PNimGameClass(int num_sticks, int[] remove_sticks) {
+  public Nim_PGameClass(int num_sticks, int[] remove_sticks) {
     this.num_sticks = num_sticks;
     this.remove_sticks = remove_sticks;
     this.win_table = win_table_generator(num_sticks+1, remove_sticks);

@@ -9,7 +9,7 @@ package subparts;
 import java.util.*;
 import java.io.*;
 
-public class Nim1 {
+public class Nim_WinTable {
   public static void main(String[] args) {
     // Create empty array for win table and scanner
     char[] win_table = new char[101];

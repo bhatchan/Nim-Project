@@ -1,15 +1,15 @@
-/* Nim Main Program (3 Inputs)
+/* Nim Main Program (4 Inputs)
  * Aaron Bhattachan
  * 
- * Given an input NIM(a, b, c), output the win condition for Player 2
+ * Given an input NIM(a, b, c, d), output the win condition for Player 2
  */
 
-package set_sticks;
+package subparts;
 
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class NimMain3 {
+public class Nim4_ModCondition {
   public static void main(String[] args) {
     // Create empty array for win table and scanner
     int win_table_size = 1001;
@@ -33,17 +33,17 @@ public class NimMain3 {
   
   public static void intro() {
     System.out.println("\n=========================================================");
-    System.out.println("     Nim-Project: Mod Condition Generator (3 Inputs)     ");
+    System.out.println("     Nim-Project: Mod Condition Generator (4 Inputs)     ");
     System.out.println("=========================================================");
-    System.out.println("NIM(a, b, c) --> Modulo Condition for Player 2\n");
+    System.out.println("Nim(a, b, c, d) --> Modulo Condition for Player 2\n");
   }
 
   public static int[] input(Scanner s) {
-    int size = 3;
+    int size = 4;
 
     int[] inp = new int[size];
 
-    System.out.print("------------------\nNIM(");
+    System.out.print("------------------\nNim(");
     for (int letter = 0; letter < size; letter++) {
       System.out.print(((char) (97 + letter)));
       if (letter != size-1) {

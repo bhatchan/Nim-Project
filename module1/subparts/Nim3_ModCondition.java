@@ -1,13 +1,15 @@
-/* Nim Main Program
+/* Nim Main Program (3 Inputs)
  * Aaron Bhattachan
  * 
- * Given an input NIM(a, b, c, ... y, z), output the win condition for Player 2
+ * Given an input NIM(a, b, c), output the win condition for Player 2
  */
+
+package subparts;
 
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class NimMain {
+public class Nim3_ModCondition {
   public static void main(String[] args) {
     // Create empty array for win table and scanner
     int win_table_size = 1001;
@@ -31,14 +33,13 @@ public class NimMain {
   
   public static void intro() {
     System.out.println("\n=========================================================");
-    System.out.println("     Nim-Project: Mod Condition Generator (Module 1)     ");
+    System.out.println("     Nim-Project: Mod Condition Generator (3 Inputs)     ");
     System.out.println("=========================================================");
-    System.out.println("NIM(a, b, c, ... y, z) --> Modulo Condition for Player 2\n");
+    System.out.println("NIM(a, b, c) --> Modulo Condition for Player 2\n");
   }
 
   public static int[] input(Scanner s) {
-    System.out.print("> Enter Number of Removable Stick Possibilities: ");
-    int size = s.nextInt();
+    int size = 3;
 
     int[] inp = new int[size];
 
@@ -84,7 +85,7 @@ public class NimMain {
   }
 
   public static int[] find_mod_condition(String[] table) {
-    for (int period = 1; period < table.length/2; period++) {
+    for (int period = 1; period < table.length; period++) {
       String[] pattern = Arrays.copyOfRange(table, 0, period);
       boolean is_periodic = true;
       for (int i = 0; i < table.length; i++) {

@@ -1,11 +1,11 @@
 /* Imperfect Nim Game Class
  * Aaron Bhattachan
  */
-package module2.imperfect_nim;
+package module2.subparts.imperfect_nim;
 
 import java.util.*;
 
-public class IMPNimGameClass {
+public class Nim_IMPGameClass {
   private int num_sticks;
   private int p1;
   private int p2;
@@ -13,7 +13,7 @@ public class IMPNimGameClass {
   private String[] win_table;
   private Random random;
 
-  public IMPNimGameClass(int num_sticks, int p1, int p2, int[] remove_sticks) {
+  public Nim_IMPGameClass(int num_sticks, int p1, int p2, int[] remove_sticks) {
     this.num_sticks = num_sticks;
     this.p1 = p1;
     this.p2 = p2;
