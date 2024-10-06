@@ -21,6 +21,6 @@ This principle extends to the same game with sizes - with 7 objects, Player A al
 
 <br></br>
 ![win-table](images/figure_2.png)
-*<center>Figure 2. Win-table for single-heap nim game with moveset Nim(1, 2, 3)</center>*
+*<center>Figure 2. Win-table for single-heap nim game with moveset Nim(1, 2, 3), for n=0 to n=10*</center>*
 <br></br>
 
