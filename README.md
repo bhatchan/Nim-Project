@@ -9,7 +9,7 @@ Rather than removing any number of objects, there are also variations of the gam
 ## Win Tables
 
 <br></br>
-![sample nim game](Images/figure_1.png)
+![sample nim game](images/figure_1.png)
 *<center>Figure 1. A sample single-heap game of Nim(1, 2, 3) with 6 objects</center>*
 <br></br>
 
@@ -20,7 +20,7 @@ You can try it out yourself: if Player A removes 2 objects on their first turn, 
 This principle extends to the same game with sizes - with 7 objects, Player A always wins; with 8 objects, it's Player B; with 9, it's back to Player A, and so on. You could go on and on with this forever; what's interesting, however, is when you write it all down. 
 
 <br></br>
-![win-table](Images/figure_2.png)
+![win-table](images/figure_2.png)
 *<center>Figure 2. Win-table for single-heap nim game with moveset Nim(1, 2, 3)</center>*
 <br></br>
 
